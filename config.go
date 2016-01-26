@@ -9,23 +9,26 @@ import (
 type Config struct {
 	// common parameters
 	aspk_node   *string
-    asinfo_port *uint
+	asinfo_port *uint
 	interval    *uint
 
-    stdout      *bool
-    
-    metric      strList
+	stdout *bool
+
+	statsd_prefix *string
+	metric strList
 
 	statsd_host *string
 	statsd_port *int
 }
 
 var cfg = Config{
-    aspk_node:   flag.String("aspk_node", "127.0.0.1", "Aerospike node address"),
-    asinfo_port: flag.Uint("asinfo_port", 3003, "Aerospike info port"),
+	aspk_node:   flag.String("aspk_node", "127.0.0.1", "Aerospike node address"),
+	asinfo_port: flag.Uint("asinfo_port", 3003, "Aerospike info port"),
 	interval:    flag.Uint("interval", 10, "Stat send interval interval (sec)"),
 
-    stdout:      flag.Bool("stdout", false, "Output metrics to STDOUT (all of them regardless of 'metric' parameters)"),
+	stdout: flag.Bool("stdout", false, "Output metrics to STDOUT (all of them regardless of 'metric' parameters)"),
+
+	statsd_prefix: flag.String("statsd_prefix", "stats.aerospike.", "StatsD metrics name prefix"),
 
 	statsd_host: flag.String("statsd_host", "127.0.0.1", "StatsD host"),
 	statsd_port: flag.Int("statsd_port", 8125, "StatsD port"),

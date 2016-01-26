@@ -1,31 +1,29 @@
 package main
 
 import (
-    "sync"
-    "runtime"
+	"runtime"
+	"sync"
 )
 
 func ternary(c bool, t interface{}, f interface{}) interface{} {
-    if c {
-        return t
-    }
-    return f
+	if c {
+		return t
+	}
+	return f
 }
 
-
 type SitesCounter struct {
-    Total int
-    Done  int
-    lock  sync.Mutex
+	Total int
+	Done  int
+	lock  sync.Mutex
 }
 
 func (c *SitesCounter) Increment(done int) (int, int) {
-    c.lock.Lock()
-    defer c.lock.Unlock()
-    c.Done += done
-    return c.Done, c.Total
+	c.lock.Lock()
+	defer c.lock.Unlock()
+	c.Done += done
+	return c.Done, c.Total
 }
-
 
 func GetCaller() (string, int, string) {
 	pc, file, line, ok := runtime.Caller(1)
