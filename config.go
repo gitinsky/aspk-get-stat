@@ -15,7 +15,8 @@ type Config struct {
 	stdout *bool
 
 	statsd_prefix *string
-	metric strList
+	statsd_tags   *bool
+	metric        strList
 
 	statsd_host *string
 	statsd_port *int
