@@ -29,6 +29,7 @@ var cfg = Config{
 	stdout: flag.Bool("stdout", false, "Output metrics to STDOUT (all of them regardless of 'metric' parameters)"),
 
 	statsd_prefix: flag.String("statsd_prefix", "stats.aerospike.", "StatsD metrics name prefix"),
+	statsd_tags:   flag.Bool("statsd_tags", false, "StatsD metrics name with tags (,host=)"),
 
 	statsd_host: flag.String("statsd_host", "127.0.0.1", "StatsD host"),
 	statsd_port: flag.Int("statsd_port", 8125, "StatsD port"),

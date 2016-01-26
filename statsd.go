@@ -13,9 +13,13 @@ var hostname string
 var statsd_client *statsd.StatsdClient
 var metrics_prefix string
 
-func statsdInit(host string, port int, prefix string) {
+func statsdInit(host string, port int, prefix string, tags bool) {
 	hostname, _ = os.Hostname()
-	hostname = ",host=" + strings.Replace(strings.Replace(hostname, ".", "_", -1),  ",", "_", -1)
+	if tags {
+		hostname = ",host=" + strings.Replace(strings.Replace(hostname, ".", "_", -1),  ",", "_", -1)
+	} else {
+		hostname = "." + strings.Replace(strings.Replace(hostname, ".", "_", -1),  ",", "_", -1)
+	}
 	metrics_prefix = prefix
 	statsd_client = statsd.New(host, port)
 }

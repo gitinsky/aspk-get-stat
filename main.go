@@ -14,7 +14,7 @@ func main() {
 	cfg.Parse()
 	spew.Fprintf(os.Stderr, "started: %#v\n", cfg)
 
-	statsdInit(*cfg.statsd_host, *cfg.statsd_port, *cfg.statsd_prefix)
+	statsdInit(*cfg.statsd_host, *cfg.statsd_port, *cfg.statsd_prefix, *cfg.statsd_tags)
 
 	getStat()
 
